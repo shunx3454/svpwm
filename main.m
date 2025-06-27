@@ -1,5 +1,5 @@
-clear;
 clc;
+clear svpwm;
 close all;
 
 pwmPeriod = 1000;
@@ -11,8 +11,8 @@ U_dc = 100;
 Uref = U_dc * 0.6;
 
 for i = 1:1:pwmPeriod*quantityOfPWM
-	U_alpha = Uref * cosd(360*i/pwmPeriod);
-	U_beta  = Uref * sind(360*i/pwmPeriod);
+	U_alpha = Uref * cosd(360*i/pwmPeriod/quantityOfPWM);
+	U_beta  = Uref * sind(360*i/pwmPeriod/quantityOfPWM);
 	[q1_6(:,i), TabcCmp(:,i)] = svpwm(i, 1/pwmPeriod, U_dc, U_alpha, U_beta);
 end
 
